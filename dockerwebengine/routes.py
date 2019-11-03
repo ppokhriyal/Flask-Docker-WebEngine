@@ -17,7 +17,20 @@ def login():
 		if user and bcrypt.check_password_hash(user.password,form.password.data):
 			login_user(user)
 			next_page = request.args.get('next')
-			flash('Login Successful. Please check the username and password','success')
+			return redirect(next_page) if next_page else redirect(url_for('dashboard'))
 		else:	
 			flash('Login Unsuccessful. Please check the username and password','danger')
 	return render_template('login.html',title='Docker Login',form=form)
+
+#Docker Dashboard
+@app.route('/dashboard')
+@login_required
+def dashboard():
+	return render_template('dashboard.html',title='Dashboard')	
+
+
+#Logout
+@app.route('/logout')
+def logout():
+	logout_user()	
+	return redirect(url_for('login'))

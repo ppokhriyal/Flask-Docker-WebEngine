@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    {% if title %}
+		<title>Docker/{{title}}</title>
+	{% else %}
+		<title>Docker Web Engine</title>
+	{% endif %}	
+</head>
+<body>
+	{% if current_user.is_authenticated %}
+		<!--Top Navigation Bar -->
+  		<nav class="navbar navbar-expand-md navbar-dark fixed-top  bg-dark  p-0 shadow justify-content-center">
+  			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+  				<img src="{{url_for('static',filename='images/dockericon.png')}}" width="48" height="48">
+  				Docker Web Engine
+  			</a>
+  				<ul class="navbar-nav ml-auto">
+  					<li class="nav-item">
+  						<a class="nav-link" href="{{url_for('dashboard')}}"><span class="fa fa-tachometer ml-auto" aria-hidden="true"></span> Dashboard</a>
+  					</li>
+  					<li class="nav-item">
+  						<a class="nav-link" href="#"><span class="fa fa-clone ml-auto" aria-hidden="true"></span> Local Images</a>
+  					</li>
+  					<li class="nav-item">
+  						<a class="nav-link" href="#"><span class="fa fa-server ml-auto" aria-hidden="true"></span> Containers</a>
+  					</li>
+  					<li class="nav-item">
+  						<a class="nav-link" href="#"><span class="fa fa-cubes ml-auto" aria-hidden="true"></span> Volumes</a>
+  					<li class="nav-item">
+  						<a class="nav-link" href="#"><span class="fa fa-cloud ml-auto" aria-hidden="true"></span> Networks</a>
+  					</li>
+
+  				</ul>
+  				
+  			<ul class="navbar-nav ml-auto">
+    			<li class="nav-item text-nowrap">
+      				<a class="nav-link text-info" href="#">Change Password</a>
+    			</li>
+  			</ul>
+  			<ul class="navbar-nav px-3">
+    			<li class="nav-item text-nowrap">
+      				<a class="nav-link text-danger" href="{{url_for('logout')}}">Sign out</a>
+    			</li>
+  			</ul>
+		</nav>
+	{% endif %}	
+	<!--Side Navigation Bar -->
+	<div class="container bg-light pt-3 mt-5">
+		<div class="row ">
+			<div class="col-md-auto border-bottom">
+			</div>	
+			<div class="col border-bottom">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>		
+	<!-- Fotter -->
+	<div class="row fixed-bottom">
+		<div class="col-lg bg-dark">
+			<footer class="page-footer font-small text-white">
+  				<div class="footer-copyright text-center pt-1 mb-2">© 2019 Copyright :
+    				<a href="#"> Docker Web Engine 1.0</a>
+  				</div>
+			</footer>
+		</div>	
+	</div>	
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
