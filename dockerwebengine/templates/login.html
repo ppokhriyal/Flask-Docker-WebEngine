@@ -18,7 +18,18 @@
 <body>
 	<div class="container bg-light">
 		<div class="row fixed-top">
-			<div class="col-lg bg-dark p-3 mb-2"></div>
+			<div class="col-lg bg-dark p-3 mb-2">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category,message in messages %}
+							<div class="alert alert-{{ category }} alert-dismissible col-lg-12">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								{{ message }}
+							</div>
+						{% endfor %}	
+					{% endif %}
+				{% endwith %}		
+			</div>
 		</div>
 		<div class="row">
 			<div class="col border-right">
@@ -27,16 +38,19 @@
 			<div class="col">
 				<h1 class="display-6 text-center">Login Please</h1>
 				<div class="info-form text-center">
-                    <form action="" class="form-signin">
+                    <form  method="POST" action="" class="form-signin">
+                    	{{form.hidden_tag()}}
                         <div class="form-group">
                             <label class="sr-only">Name</label>
-                            <input type="text" class="form-control" placeholder="Username">
+                            {{ form.username(class="form-control",placeholder="Username" )}}
                         </div>
                         <div class="form-group">
                             <label class="sr-only">Email</label>
-                            <input type="text" class="form-control" placeholder="Password">
+                            {{ form.password(class="form-control",placeholder="Password") }}
                         </div>
-                        <button type="submit" class="btn btn-success btn-block ">Login</button>
+                        <div class="form-group">
+                        	{{ form.submit(class="btn btn-success btn-block") }}
+                        </div>
                     </form>
                 </div>
 			</div>
