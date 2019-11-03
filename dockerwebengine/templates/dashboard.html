@@ -1,6 +1,51 @@
 {% extends 'layout.html' %}
 {% block content %}
-	<h3 class="border-bottom text-monospace mt-2">Dashboard</h3>
+	<h3 class="mt-2">Dashboard</h3>
+	<div class="border-top pt-3"></div>
+	<div class="card mt-3">
+                <h6 class="card-header font-weight-bold text-primary">Docker Engine - Community</h6>
+                <div class="row text-center">
+                        <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">Docker Version</h7>
+                                <p class="card-text">{{ infodict.get('docker_version')}}</p>
+                        </div>
+                </div>
+                <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">API Version</h7>
+                                <p class="card-text">{{ infodict.get('docker_api_version')}}</p>
+                        </div>
+                </div>
+                <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">OS</h7>
+                                <p class="card-text">{{infodict.get('os')}} - {{infodict.get('arch')}}</p>
+                        </div>
+                </div>
+                <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">Kernel Version</h7>
+                                <p class="card-text">{{infodict.get('kernel_version')}}</p>
+                        </div>
+                </div>
+                <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">CPU Core</h7>
+                                <p class="card-text">{{ infodict.get('cpuinfo')}}</p>
+                        </div>
+                </div>
+                <div class="col-md-auto text-center">
+                                <div class="card-body">
+                                <h7 class="card-title font-weight-bold">RAM</h7>
+                                <p class="card-text">{{ infodict.get('ramsize') }}</p>
+                        </div>
+                </div>
+                </div>
+        </div>
+
+
+
 	<div class="card-deck mt-5">
 		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
   			<div class="card-header"> Local Images</div>
@@ -14,7 +59,6 @@
   			<div class="card-header">Containers</div>
   				<div class="card-body">
     				<h5 class="card-title">Light card title</h5>
-    				
     				<a href="#" class="btn btn-primary btn-block">Refresh</a>
   				</div>
   		</div>
