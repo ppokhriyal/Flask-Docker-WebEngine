@@ -14,7 +14,7 @@ apiclient = docker.APIClient(base_url='unix://var/run/docker.sock')
 client = docker.from_env()
 
 #Docker Refresh System Information
-@app.route('/dockerinfo',methods=['POST'])
+@app.route('/dockerinfo')
 def docker_info():
 
 	info_dict = {}
@@ -25,7 +25,8 @@ def docker_info():
 	ram = mem.total / 1024 / 1024 / 1024
 
 	#Docker API Low Level
-	dockerinfo =apiclient.version()
+	dockerinfo = apiclient.version()
+
 
 	info_dict['ramsize'] = ram
 	info_dict['cpuinfo'] = cpu.get('count')
@@ -34,6 +35,10 @@ def docker_info():
 	info_dict['os'] = dockerinfo.get('Os')
 	info_dict['arch'] = dockerinfo.get('Arch')
 	info_dict['kernel_version'] = dockerinfo.get('KernelVersion')
+	info_dict['image_count'] = len(apiclient.images())
+	info_dict['container_count'] = len(apiclient.containers(all=True))
+	info_dict['volume_count'] = len(client.volumes.list())
+	info_dict['network_count'] = len(apiclient.networks())
 
 	return info_dict
 
@@ -53,12 +58,17 @@ def login():
 	return render_template('login.html',title='Docker Login',form=form)
 
 #Docker Dashboard
-@app.route('/dashboard')
+@app.route('/dashboard',methods=['GET','POST'])
 @login_required
 def dashboard():
 	infodict = docker_info()
-
 	return render_template('dashboard.html',title='Dashboard',infodict=infodict)
+	return jsonify({'result':'success'})
+
+@app.route('/refresh',methods=['POST'])
+def refresh():
+	infodict = docker_info()
+	return jsonify({'result':'success','imagerefresh':infodict.get('image_count'),'containerrefresh':infodict.get('container_count'),'volumerefresh':infodict.get('volume_count'),'networkrefresh':infodict.get('network_count')}) 
 
 
 #Logout

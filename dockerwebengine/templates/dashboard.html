@@ -44,38 +44,35 @@
                 </div>
         </div>
 
-
-
 	<div class="card-deck mt-5">
 		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header"> Local Images</div>
+  			<div class="card-header font-weight-bold"> Local Images</div>
   				<div class="card-body">
-    				<h5 class="card-title">Light card title</h5>
-    				
-    				<a href="#" class="btn btn-primary btn-block">Refresh</a>
+    				<h5 class="card-title" id="Show_Image_Count">{{infodict.get('image_count')}}</h5>
+    				<a href="#" class="btn btn-primary btn-block refreshButton" refresh_image_id="{{infodict.get('image_count')}}">Refresh</a>
   				</div>
   		</div>
   		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header">Containers</div>
+  			<div class="card-header font-weight-bold ">Containers</div>
   				<div class="card-body">
-    				<h5 class="card-title">Light card title</h5>
-    				<a href="#" class="btn btn-primary btn-block">Refresh</a>
+    				<h5 class="card-title" id="Show_Container_Count">{{infodict.get('container_count')}}</h5>
+    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
   				</div>
   		</div>
   		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header">Volumes</div>
+  			<div class="card-header font-weight-bold">Volumes</div>
   				<div class="card-body">
-    				<h5 class="card-title">Light card title</h5>
+    				<h5 class="card-title" id="Show_Volume_Count">{{infodict.get('volume_count')}}</h5>
     				
-    				<a href="#" class="btn btn-primary btn-block">Refresh</a>
+    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
   				</div>
   		</div>
   		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header">Networks</div>
+  			<div class="card-header font-weight-bold">Networks</div>
   				<div class="card-body">
-    				<h5 class="card-title">Light card title</h5>
+    				<h5 class="card-title" id="Show_Network_Count">{{infodict.get('network_count')}}</h5>
     				
-    				<a href="#" class="btn btn-primary btn-block">Refresh</a>
+    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
   				</div>
   		</div>
   	</div>
