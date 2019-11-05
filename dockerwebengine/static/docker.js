@@ -103,3 +103,11 @@ $(document).ready(function(){
 	});
 });
 
+//Delete the Selected Image
+$(document).ready(function(){
+
+	$('.delete-image').on('click',function(){
+		console.log("Delete Image Clicked")
+
+	});
+});

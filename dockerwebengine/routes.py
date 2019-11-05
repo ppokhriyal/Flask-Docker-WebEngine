@@ -68,8 +68,15 @@ def dashboard():
 @app.route('/refresh',methods=['POST'])
 def refresh():
 	infodict = docker_info()
-	return jsonify({'result':'success','imagerefresh':infodict.get('image_count'),'containerrefresh':infodict.get('container_count'),'volumerefresh':infodict.get('volume_count'),'networkrefresh':infodict.get('network_count')}) 
+	return jsonify({'result':'success','imagerefresh':infodict.get('image_count'),'containerrefresh':infodict.get('container_count'),
+		'volumerefresh':infodict.get('volume_count'),'networkrefresh':infodict.get('network_count')}) 
 
+#Docker Local Images
+@app.route('/local_images',methods=['GET','POST'])
+@login_required
+def local_images():
+	infodict = docker_info()
+	return render_template('local_image.html',title='Images',infodict=infodict,apiimage=apiclient.images(),client=client)
 
 #Logout
 @app.route('/logout')

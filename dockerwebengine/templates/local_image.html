@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<h3 class="mt-2">Local Images</h3>
+	<div class="border-top pt-3"></div>
+	<div class="row">
+		<div class="col">
+			<button type="button" class="btn btn-sm btn-success float-right  m-1">Pull Image</button>
+			<button type="button" class="btn btn-sm btn-danger float-right m-1">Remove All</button>
+			<button type="button" class="btn btn-sm btn-secondary float-right m-1">Local Images <span class="badge badge-light">{{infodict.get('image_count')}}</span></button>
+		</div>
+	</div>
+	<div class="row pt-3">
+		<div class="col">
+		<table class="table table-hover table-sm">
+  			<thead class="thead-dark">
+    			<tr>
+      				<th scope="col">Image Id</th>
+      				<th scope="col">Repository</th>
+      				<th scope="col">Size</th>
+      				<th scope="col">Action</th>
+      				<th scope="col">Details</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  			<!-- Check for Image Count -->
+  				{% if infodict.get('image_count') > 0 %}
+  					{% for i in apiimage %}	
+    					<tr>
+      						<td>{{i['Id'][7:19]}}</td>
+      						<td>{{i['RepoTags'][0]}}</td>
+      						<td>{{i['Size']}}</td>
+      						<td><a href="#" class="badge badge-danger delete-image">Delete</a></td>
+      						<td><a href="#">View</a></td>
+    					</tr>
+    				{% endfor %}	
+    			{% else %}	
+    				<tr>
+      					<td>NA</td>
+      					<td>NA</td>
+      					<td>NA</td>
+      					<td>NA</td>
+      					<td>NA</td>
+    				</tr>
+    			{% endif %}	
+  			</tbody>
+		</table>
+</div>
+</div>	
+{% endblock content %}
