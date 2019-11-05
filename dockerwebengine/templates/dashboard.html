@@ -2,7 +2,7 @@
 {% block content %}
 	<h3 class="mt-2">Dashboard</h3>
 	<div class="border-top pt-3"></div>
-	<div class="card mt-3">
+	<div class="card mt-3 mb-3">
                 <h6 class="card-header font-weight-bold text-primary">Docker Engine - Community</h6>
                 <div class="row text-center">
                         <div class="col-md-auto text-center">
@@ -44,36 +44,37 @@
                 </div>
         </div>
 
-	<div class="card-deck mt-5">
-		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header font-weight-bold"> Local Images</div>
-  				<div class="card-body">
-    				<h5 class="card-title" id="Show_Image_Count">{{infodict.get('image_count')}}</h5>
-    				<a href="#" class="btn btn-primary btn-block refreshButton" refresh_image_id="{{infodict.get('image_count')}}">Refresh</a>
-  				</div>
+        <!--Refresh Button-->
+    	<button type="button" class="btn btn-warning btn-sm float-right text-monospace refreshButton"><span class="fa fa-refresh ml-auto" aria-hidden="true"> Refresh</button>
+    	<!--Docker Summry Information -->
+		<div class="card-deck mt-5 pt-2">	
+			<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
+  				<div class="card-header font-weight-bold"> Local Images</div>
+  					<div class="card-body">
+    					<h5 class="card-title" id="Show_Image_Count">{{infodict.get('image_count')}}</h5>
+    					<a href="#" class="btn btn-primary btn-block refreshButton-image" refresh_image_id="{{infodict.get('image_count')}}">Refresh</a>
+  					</div>
+  			</div>
+  			<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
+  				<div class="card-header font-weight-bold ">Containers</div>
+  					<div class="card-body">
+    					<h5 class="card-title" id="Show_Container_Count">{{infodict.get('container_count')}}</h5>
+    					<a href="#" class="btn btn-primary btn-block refreshButton-container">Refresh</a>
+  					</div>
+  			</div>
+  			<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
+  				<div class="card-header font-weight-bold">Volumes</div>
+  					<div class="card-body">
+    					<h5 class="card-title" id="Show_Volume_Count">{{infodict.get('volume_count')}}</h5>
+    					<a href="#" class="btn btn-primary btn-block refreshButton-volume">Refresh</a>
+  					</div>
+  			</div>
+  			<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
+  				<div class="card-header font-weight-bold">Networks</div>
+  					<div class="card-body">
+    					<h5 class="card-title" id="Show_Network_Count">{{infodict.get('network_count')}}</h5>
+    					<a href="#" class="btn btn-primary btn-block refreshButton-network">Refresh</a>
+  					</div>
+  			</div>
   		</div>
-  		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header font-weight-bold ">Containers</div>
-  				<div class="card-body">
-    				<h5 class="card-title" id="Show_Container_Count">{{infodict.get('container_count')}}</h5>
-    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
-  				</div>
-  		</div>
-  		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header font-weight-bold">Volumes</div>
-  				<div class="card-body">
-    				<h5 class="card-title" id="Show_Volume_Count">{{infodict.get('volume_count')}}</h5>
-    				
-    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
-  				</div>
-  		</div>
-  		<div class="card bg-light mb-3 text-center" style="max-width: 18rem;">
-  			<div class="card-header font-weight-bold">Networks</div>
-  				<div class="card-body">
-    				<h5 class="card-title" id="Show_Network_Count">{{infodict.get('network_count')}}</h5>
-    				
-    				<a href="#" class="btn btn-primary btn-block refreshButton">Refresh</a>
-  				</div>
-  		</div>
-  	</div>
 {% endblock content %}
