@@ -6,7 +6,9 @@
 		<div class="col">
 			<button type="button" class="btn btn-sm btn-success float-right  m-1">Pull Image</button>
 			<button type="button" class="btn btn-sm btn-danger float-right m-1">Remove All</button>
-			<button type="button" class="btn btn-sm btn-secondary float-right m-1">Local Images <span class="badge badge-light">{{infodict.get('image_count')}}</span></button>
+			<button type="button" class="btn btn-sm btn-secondary  m-1">Local Images <span class="badge badge-light imgcount">{{infodict.get('image_count')}}</span></button>
+			<button type="button" class="btn btn-warning btn-sm m-1"><span class="fa fa-refresh ml-auto" aria-hidden="true"> Refresh</button>
+			
 		</div>
 	</div>
 	<div class="row pt-3">
@@ -25,7 +27,7 @@
   			<!-- Check for Image Count -->
   				{% if infodict.get('image_count') > 0 %}
   					{% for i in apiimage %}	
-    					<tr>
+    					<tr id="ImageRow">
       						<td>{{i['Id'][7:19]}}</td>
       						<td>{{i['RepoTags'][0]}}</td>
       						<td>{{i['Size']}}</td>

@@ -1,4 +1,7 @@
 import docker
+from docker import errors
+import logging
+import requests
 from cpuinfo import get_cpu_info
 from psutil import virtual_memory
 from flask import render_template, url_for, flash, redirect, request, abort, session, jsonify
@@ -78,6 +81,26 @@ def local_images():
 	infodict = docker_info()
 	return render_template('local_image.html',title='Images',infodict=infodict,apiimage=apiclient.images(),client=client)
 
+#Docker Remove Image request
+@app.route('/delete_image/<id>',methods=['GET','POST'])
+def del_image(id):
+
+	try:
+		
+		apiclient.remove_image(id)
+		infodict = docker_info()
+
+		return jsonify({'result':'success','imagerefresh':infodict.get('image_count')})
+
+	except Exception as e:
+		print (str(e))
+		return jsonify({'result':'fail','msg':str(e)})
+
+		
+	
+
+	
+	
 #Logout
 @app.route('/logout')
 def logout():

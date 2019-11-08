@@ -107,7 +107,37 @@ $(document).ready(function(){
 $(document).ready(function(){
 
 	$('.delete-image').on('click',function(){
-		console.log("Delete Image Clicked")
+
+		var Row = document.getElementById("ImageRow");
+		var Cell = Row.getElementsByTagName("td");
+		id = Cell[0].innerText;
+
+		req = $.ajax({
+			url : '/delete_image/'+ id,
+			type : 'POST'
+		});
+
+		req.done(function(data){
+
+			//Check if any error is occured
+			if (data.result == "fail")
+			{
+				alert(data.msg);
+			}
+			else{
+
+				//Update Image count
+				$('.imgcount').text(data.imagerefresh)
+				console.log(data.result);
+				//Remove selected table row
+				document.getElementById("ImageRow").remove();
+
+			}
+
+			
+			
+			
+		});
 
 	});
 });
