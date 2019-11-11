@@ -131,13 +131,33 @@ $(document).ready(function(){
 				console.log(data.result);
 				//Remove selected table row
 				document.getElementById("ImageRow").remove();
-
 			}
-
-			
-			
-			
 		});
 
 	});
 });
+
+// //Pull Image
+// $(document).ready(function(){
+
+// 	$('#SearchImageBtn').on('click',function(){
+// 		var searchx = document.getElementById("SearchImageInput").value; 
+
+// 		if (searchx == '')
+// 		{
+// 			alert('Empty Search Image Found');
+// 		}
+// 		else
+// 		{
+// 			req = $.ajax({
+// 				url : '/pull_image/search/'+searchx,
+// 				type: 'POST'
+// 			});
+
+// 			req.done(function(data){
+// 				var imagsearchresult = data.imgsearchcount;
+// 				$('#searchresult').text('Search result : ' + data.imgsearchcount);
+// 			});
+// 		}
+// 	});
+// });

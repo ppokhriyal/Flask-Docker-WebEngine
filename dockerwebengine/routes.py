@@ -1,12 +1,13 @@
 import docker
 from docker import errors
 import logging
+import json
 import requests
 from cpuinfo import get_cpu_info
 from psutil import virtual_memory
 from flask import render_template, url_for, flash, redirect, request, abort, session, jsonify
 from dockerwebengine import app, db, bcrypt, login_manager			
-from dockerwebengine.forms import LoginForm
+from dockerwebengine.forms import LoginForm, SearchImageForm
 from dockerwebengine.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -81,6 +82,15 @@ def local_images():
 	infodict = docker_info()
 	return render_template('local_image.html',title='Images',infodict=infodict,apiimage=apiclient.images(),client=client)
 
+
+#Docker Pull Image
+@app.route('/pull_image',methods=['GET','POST'])
+def pull_image():
+	if request.method == "POST":
+		len_search_text = len(apiclient.search(request.form['searchimage']))
+
+	return render_template('pull_image.html',len_search_text=len_search_text)	
+
 #Docker Remove Image request
 @app.route('/delete_image/<id>',methods=['GET','POST'])
 def del_image(id):
@@ -96,11 +106,6 @@ def del_image(id):
 		print (str(e))
 		return jsonify({'result':'fail','msg':str(e)})
 
-		
-	
-
-	
-	
 #Logout
 @app.route('/logout')
 def logout():

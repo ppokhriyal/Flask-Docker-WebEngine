@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+		<a class="badge badge-secondary float-right mt-3" href="{{url_for('local_images')}}">Go Back</a>
+		<h4 class="mt-2">Local Images >> Pull Image</h4>
+		<div class="border-top pt-3"></div>
+
+		{% if len_search_text == 0 %}
+			<h4> No result found</h4>
+		{% else %}
+			<h6>Search result : {{len_search_text}}</h6>
+		{% endif %}
+{% endblock content %}

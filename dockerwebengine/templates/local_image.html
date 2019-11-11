@@ -1,13 +1,26 @@
 {% extends 'layout.html' %}
 {% block content %}
-	<h3 class="mt-2">Local Images</h3>
-	<div class="border-top pt-3"></div>
+	<div class="row">
+
+    <div class="col">
+      <h4>Local Images</h4>
+    </div>
+    <div class="col">
+      <form class="form-inline float-right" method="POST" action="http://localhost:5000/pull_image">
+
+        <div class="form-group">
+           <input type="text" name="searchimage" class=" form-control form-control-sm mt-1" id="inputPassword2" placeholder="Search ...">
+         </div>
+         <button type="submit" class="btn btn-primary btn-sm mt-1 ml-2 ">Search Image</button>
+      </form>
+    </div>  
+  </div>    
+	<div class="border-bottom mt-1"></div>
 	<div class="row">
 		<div class="col">
-			<button type="button" class="btn btn-sm btn-success float-right  m-1">Pull Image</button>
-			<button type="button" class="btn btn-sm btn-danger float-right m-1">Remove All</button>
-			<button type="button" class="btn btn-sm btn-secondary  m-1">Local Images <span class="badge badge-light imgcount">{{infodict.get('image_count')}}</span></button>
-			<button type="button" class="btn btn-warning btn-sm m-1"><span class="fa fa-refresh ml-auto" aria-hidden="true"> Refresh</button>
+			<button type="button" class="btn btn-sm btn-danger float-right m-2">Remove All</button>
+			<button type="button" class="btn btn-sm btn-secondary  m-2">Local Images <span class="badge badge-light imgcount">{{infodict.get('image_count')}}</span></button>
+			<button type="button" class="btn btn-warning btn-sm m-2"><span class="fa fa-refresh ml-auto" aria-hidden="true"> Refresh</button>
 			
 		</div>
 	</div>
