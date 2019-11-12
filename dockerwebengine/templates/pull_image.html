@@ -1,12 +1,37 @@
 {% extends 'layout.html' %}
 {% block content %}
-		<a class="badge badge-secondary float-right mt-3" href="{{url_for('local_images')}}">Go Back</a>
+		<a class="badge badge-secondary float-right mt-3  mr-2" href="{{url_for('local_images')}}">Go Back</a>
 		<h4 class="mt-2">Local Images >> Pull Image</h4>
 		<div class="border-top pt-3"></div>
 
 		{% if len_search_text == 0 %}
-			<h4> No result found</h4>
+			<h6>Search result for {{search_text}} : Not Found</h6>
 		{% else %}
-			<h6>Search result : {{len_search_text}}</h6>
+				<h6>Search result for {{search_text}} : {{len_search_text}}</h6>
+			<table class="table table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Official</th>
+						<th scope="col">Automated</th>
+						<th scope="col">Ratings</th>
+						<th scope="col">Description</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in search_text_dict %}
+						<tr>
+							<td>{{i['name']}}</td>
+							<td>{{i['is_official']}}</td>
+							<td>{{i['is_automated']}}</td>
+							<td>{{i['star_count']}}</td>
+							<td>{{i['description']}}</td>
+							<td><a href="#" class="badge badge-success delete-image">Download</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
 		{% endif %}
 {% endblock content %}

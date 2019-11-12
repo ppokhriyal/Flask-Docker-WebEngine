@@ -10,6 +10,7 @@ from dockerwebengine import app, db, bcrypt, login_manager
 from dockerwebengine.forms import LoginForm, SearchImageForm
 from dockerwebengine.models import User
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_paginate import Pagination, get_page_parameter
 
 
 
@@ -83,13 +84,16 @@ def local_images():
 	return render_template('local_image.html',title='Images',infodict=infodict,apiimage=apiclient.images(),client=client)
 
 
+
 #Docker Pull Image
 @app.route('/pull_image',methods=['GET','POST'])
 def pull_image():
+
 	if request.method == "POST":
+		search_text_dict = apiclient.search(request.form['searchimage'])
 		len_search_text = len(apiclient.search(request.form['searchimage']))
 
-	return render_template('pull_image.html',len_search_text=len_search_text)	
+	return render_template('pull_image.html',len_search_text=len_search_text,search_text=request.form['searchimage'],search_text_dict=search_text_dict)	
 
 #Docker Remove Image request
 @app.route('/delete_image/<id>',methods=['GET','POST'])
