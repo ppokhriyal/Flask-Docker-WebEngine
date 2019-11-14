@@ -7,7 +7,7 @@
 		{% if len_search_text == 0 %}
 			<h6>Search result for {{search_text}} : Not Found</h6>
 		{% else %}
-				<h6>Search result for {{search_text}} : {{len_search_text}}</h6>
+			<h6 class="mb-4">Search result for {{search_text}} : {{len_search_text}}</h6>
 			<table class="table table-hover table-sm" id="tablepaginate">
 				<thead class="thead-dark">
 					<tr>
@@ -21,13 +21,27 @@
 				</thead>
 				<tbody>
 					{% for i in search_text_dict %}
-						<tr>
+						<tr id="PullImageRow">
 							<td>{{i['name']}}</td>
 							<td>{{i['is_official']}}</td>
 							<td>{{i['is_automated']}}</td>
 							<td>{{i['star_count']}}</td>
 							<td>{{i['description']}}</td>
-							<td><a href="#" class="badge badge-success delete-image">Download</a></td>
+							<td><a href="#" class="badge badge-success download-image" id=download-image onclick="pullimage(this)">Pull</a></td>
+							<script type="text/javascript">
+								function pullimage(obj){
+									var imgname = $(obj).closest('tr').find('td:first-child').text();
+
+									req = $.ajax({
+										url : '/download_image/'+imgname,
+										type : "POST"
+									});
+									req.done(function(data){
+										console.log(data.result);
+										console.log(data.pullresult);
+									});
+								}
+							</script>
 						</tr>
 					{% endfor %}
 				</tbody>

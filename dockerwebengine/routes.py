@@ -95,6 +95,19 @@ def pull_image():
 
 	return render_template('pull_image.html',len_search_text=len_search_text,search_text=request.form['searchimage'],search_text_dict=search_text_dict)	
 
+
+#Docker Download Image
+@app.route('/download_image/<imgname>',methods=['GET','POST'])
+def downloadimg(imgname):
+
+	try:
+		pulling = apiclient.pull(imgname,tag='latest')
+		return jsonify({'result':'success','pullresult':pulling})
+	except Exception as e:
+		print(str(e))
+		return jsonify({'result':'fail'})
+	
+
 #Docker Remove Image request
 @app.route('/delete_image/<id>',methods=['GET','POST'])
 def del_image(id):

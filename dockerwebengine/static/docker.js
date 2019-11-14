@@ -137,30 +137,29 @@ $(document).ready(function(){
 	});
 });
 
-// //Pull Image
+// //Download Image
 // $(document).ready(function(){
 
-// 	$('#SearchImageBtn').on('click',function(){
-// 		var searchx = document.getElementById("SearchImageInput").value; 
+// 	$('.download-image').on('click',function(){
+// 		var Row = document.getElementById("PullImageRow");
+// 		// var Cell = Row.getElementsByTagName("td");
+// 		// imgname = Cell[0].innerText;
 
-// 		if (searchx == '')
-// 		{
-// 			alert('Empty Search Image Found');
-// 		}
-// 		else
-// 		{
-// 			req = $.ajax({
-// 				url : '/pull_image/search/'+searchx,
-// 				type: 'POST'
-// 			});
+// 		console.log(Row);
 
-// 			req.done(function(data){
-// 				var imagsearchresult = data.imgsearchcount;
-// 				$('#searchresult').text('Search result : ' + data.imgsearchcount);
-// 			});
-// 		}
+// 		// req = $.ajax({
+// 		// 	url : '/download_image/'+imgname,
+// 		// 	type : 'POST'
+// 		// });
+
+// 		// req.done(function(data){
+// 		// 	console.log(data.result);
+// 		// 	console.log(data.pullresult);
+// 		// });
+
 // 	});
 // });
+
 
 //Table Pagination
 $(document).ready(function(){
@@ -170,3 +169,4 @@ $(document).ready(function(){
 	});
 	$('.dataTables_length').addClass('bs-select');
 });
+
