@@ -33,7 +33,7 @@
 									var imgname = $(obj).closest('tr').find('td:first-child').text();
 
 									req = $.ajax({
-										url : '/download_image/'+imgname,
+										url : '/download_image/'+ imgname.split('/').join(':'),
 										type : "POST"
 									});
 									req.done(function(data){

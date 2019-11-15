@@ -97,12 +97,16 @@ def pull_image():
 
 
 #Docker Download Image
-@app.route('/download_image/<imgname>',methods=['GET','POST'])
+@app.route('/download_image/<string:imgname>',methods=['GET','POST'])
 def downloadimg(imgname):
 
+	a = imgname.replace(':','/')
+	print(a)
+
 	try:
-		pulling = apiclient.pull(imgname,tag='latest')
+		pulling = apiclient.pull(a,tag='latest')
 		return jsonify({'result':'success','pullresult':pulling})
+
 	except Exception as e:
 		print(str(e))
 		return jsonify({'result':'fail'})
