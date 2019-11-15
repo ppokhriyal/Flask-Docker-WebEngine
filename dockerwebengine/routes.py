@@ -100,11 +100,10 @@ def pull_image():
 @app.route('/download_image/<string:imgname>',methods=['GET','POST'])
 def downloadimg(imgname):
 
-	a = imgname.replace(':','/')
-	print(a)
+	reqimg = imgname.replace(':','/')
 
 	try:
-		pulling = apiclient.pull(a,tag='latest')
+		pulling = apiclient.pull(reqimg,tag='latest')
 		return jsonify({'result':'success','pullresult':pulling})
 
 	except Exception as e:
@@ -113,12 +112,12 @@ def downloadimg(imgname):
 	
 
 #Docker Remove Image request
-@app.route('/delete_image/<id>',methods=['GET','POST'])
-def del_image(id):
+@app.route('/delete_image/<imgid>',methods=['GET','POST'])
+def del_image(imgid):
 
 	try:
 		
-		apiclient.remove_image(id)
+		apiclient.remove_image(imgid)
 		infodict = docker_info()
 
 		return jsonify({'result':'success','imagerefresh':infodict.get('image_count')})

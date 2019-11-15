@@ -103,39 +103,39 @@ $(document).ready(function(){
 	});
 });
 
-//Delete the Selected Image
-$(document).ready(function(){
+// //Delete the Selected Image
+// $(document).ready(function(){
 
-	$('.delete-image').on('click',function(){
+// 	$('.delete-image').on('click',function(){
 
-		var Row = document.getElementById("ImageRow");
-		var Cell = Row.getElementsByTagName("td");
-		id = Cell[0].innerText;
+// 		var Row = document.getElementById("ImageRow");
+// 		var Cell = Row.getElementsByTagName("td");
+// 		id = Cell[0].innerText;
 
-		req = $.ajax({
-			url : '/delete_image/'+ id,
-			type : 'POST'
-		});
+// 		req = $.ajax({
+// 			url : '/delete_image/'+ id,
+// 			type : 'POST'
+// 		});
 
-		req.done(function(data){
+// 		req.done(function(data){
 
-			//Check if any error is occured
-			if (data.result == "fail")
-			{
-				alert(data.msg);
-			}
-			else{
+// 			//Check if any error is occured
+// 			if (data.result == "fail")
+// 			{
+// 				alert(data.msg);
+// 			}
+// 			else{
 
-				//Update Image count
-				$('.imgcount').text(data.imagerefresh)
-				console.log(data.result);
-				//Remove selected table row
-				document.getElementById("ImageRow").remove();
-			}
-		});
+// 				//Update Image count
+// 				$('.imgcount').text(data.imagerefresh)
+// 				console.log(data.result);
+// 				//Remove selected table row
+// 				document.getElementById("ImageRow").remove();
+// 			}
+// 		});
 
-	});
-});
+// 	});
+// });
 
 // //Download Image
 // $(document).ready(function(){

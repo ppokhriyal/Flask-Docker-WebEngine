@@ -44,7 +44,33 @@
       						<td>{{i['Id'][7:19]}}</td>
       						<td>{{i['RepoTags'][0]}}</td>
       						<td>{{i['Size']}}</td>
-      						<td><a href="#" class="badge badge-danger delete-image">Delete</a></td>
+      						<td><a href="#" class="badge badge-danger delete-image" onclick="delimage(this)">Delete</a></td>
+                  <script type="text/javascript">
+                    function delimage(obj)
+                    {
+                      var imgid = $(obj).closest('tr').find('td:first-child').text();
+
+                      req = $.ajax({
+                        url : '/delete_image/'+ imgid,
+                        type : "POST" });
+
+                      req.done(function(data){
+
+                        //Check if any error is occured
+                        if (data.result == "fail")
+                        {
+                          alert(data.msg);
+                        }
+                        else{
+                          //Update Image count
+                          $('.imgcount').text(data.imagerefresh)
+                           console.log(data.result);
+                          //Remove selected table row
+                          document.getElementById("ImageRow").remove();
+                          }
+                        });
+                    }
+                  </script>
       						<td><a href="#">View</a></td>
     					</tr>
     				{% endfor %}	

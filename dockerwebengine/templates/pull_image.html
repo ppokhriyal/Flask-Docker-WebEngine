@@ -27,10 +27,13 @@
 							<td>{{i['is_automated']}}</td>
 							<td>{{i['star_count']}}</td>
 							<td>{{i['description']}}</td>
-							<td><a href="#" class="badge badge-success download-image" id=download-image onclick="pullimage(this)">Pull</a></td>
+							<td><a href="#" class="badge badge-success downloadimgbtn" id=downloadimgbtn onclick="pullimage(this)">Pull</a></td>
 							<script type="text/javascript">
 								function pullimage(obj){
 									var imgname = $(obj).closest('tr').find('td:first-child').text();
+									//document.getElementById('downloadimgbtn').style.backgroundColor='#FFC300';
+									$(obj).text("Pulling");
+
 
 									req = $.ajax({
 										url : '/download_image/'+ imgname.split('/').join(':'),
@@ -39,6 +42,10 @@
 									req.done(function(data){
 										console.log(data.result);
 										console.log(data.pullresult);
+										//document.getElementById('downloadimgbtn').style.backgroundColor='#7a8080';
+
+										$(obj).text("Done")
+										
 									});
 								}
 							</script>
